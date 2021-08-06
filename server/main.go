@@ -36,9 +36,10 @@ func useFlags(flag flagStore) {
 		prog, ok := debug.ReadBuildInfo()
 		if !ok {
 			fmt.Println("🤔 luba server version unknown")
+		} else {
+			fmt.Printf("👸 luba server %s @ %s\n",
+				prog.Main.Version, prog.Main.Path)
 		}
-		fmt.Printf("👸 luba server %s @ %s\n",
-			prog.Main.Version, prog.Main.Path)
 		os.Exit(0)
 	}
 }
