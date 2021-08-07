@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"runtime/debug"
-
 	"github.com/pborman/getopt/v2"
 	"github.com/sharpvik/log-go/v2"
+	"net/http"
+	"os"
+	"runtime/debug"
 )
 
 type flagStore struct {
@@ -56,4 +56,7 @@ func configure() {
 func main() {
 	configure()
 	config.Log()
+	if err := NewServer().ListenAndServe(); err != http.ErrServerClosed {
+		log.Errorf("server shut with error: %s", err)
+	}
 }

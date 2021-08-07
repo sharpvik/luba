@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/sharpvik/log-go/v2"
 	"gopkg.in/yaml.v3"
 	"os"
@@ -13,6 +14,10 @@ type Config struct {
 
 func (config Config) Log() {
 	log.Infof("luba shall run @ %s:%d", config.LubaHost, config.LubaPort)
+}
+
+func (config Config) LubaAddr() string {
+	return fmt.Sprintf("%s:%d", config.LubaHost, config.LubaPort)
 }
 
 var DefaultConfig = Config{
